@@ -1,0 +1,24 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        cache = {}
+        def dfs(i):
+            if i >= len(s):
+                return True
+            if i in cache:
+                return cache[i]
+            
+            for w in wordDict:
+                if i + len(w) - 1 < len(s) and s[i:i + len(w)] == w:
+                    if dfs(i + len(w)):
+                        cache[i] = True
+                        return cache[i]
+            cache[i] = False
+            return cache[i]
+
+            
+
+        return dfs(0)
+            
+
+
+        
